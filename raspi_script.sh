@@ -42,12 +42,15 @@ systemctl start ssh
 echo $ssh_key_1 >> /home/$user1/.ssh/authorized_keys
 echo "echo $ssh_key_1 >> /home/$user1/.ssh/authorized_keys"
 echo $ssh_key_1 >> /home/pi/.ssh/authorized_keys
-echo "echo $ssh_key_1 >> /home/pi/.ssh/authorized_keys"
+echo -n "echo $ssh_key_1 >> /home/pi/.ssh/authorized_keys"
+cat ascii_art.txt > /etc/motd
 cat ./sshd_conf > /etc/ssh/sshd_conf
 echo "cat ./sshd_conf > /etc/ssh/sshd_conf"
 
-cat /boot/cmdline.txt            # show original cmdline.txt
 sudo raspi-config nonint do_expand_rootfs
+
+git config --global user.email "christian@heusel.eu"
+git config --global user.name "Chris Heusl"
 
 apt  update
 apt -y upgrade
