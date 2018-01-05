@@ -1,9 +1,11 @@
 #!/bin/bash
-user1="chris"
+
+echo -n "Please enter a username: "
+read user1
 ssh_key_1=$(cat ./ssh_key.pub)
 passwd pi
 
-if ! grep pi /etc/hostname
+if ! grep raspberry /etc/hostname
 then
 
     echo -n "Please enter a hostname: "
@@ -56,13 +58,13 @@ apt -y upgrade
 apt -y dist-upgrade
 apt install -y fail2ban vim sl zsh
 
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sudo -H -u pi bash -c  'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
+sudo -H -u $user1 bash -c 'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
+
 cat ./zshrc > /root/.zshrc
 echo "cat ./zshrc > /root/.zshrc"
 sudo -H -u pi bash -c 'cat ./zshrc > /home/pi/.zshrc'
 echo "cat ./zshrc > /home/pi/.zshrc"
 sudo -H -u pi bash -c 'cat ./zshrc_chris > /home/$user1/.zshrc'
 echo "cat ./zshrc_chris > /home/$user1/.zshrc"
-
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-sudo -H -u pi bash -c  'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
-sudo -H -u $user1 bash -c 'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
