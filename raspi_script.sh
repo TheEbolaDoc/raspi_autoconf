@@ -56,9 +56,9 @@ apt install -y fail2ban vim sl zsh
 
 cat ./zshrc > /root/.zshrc
 echo "cat ./zshrc > /root/.zshrc"
-cat ./zshrc > /home/pi/.zshrc
+sudo -H -u pi bash -c 'cat ./zshrc > /home/pi/.zshrc'
 echo "cat ./zshrc > /home/pi/.zshrc"
-cat ./zshrc_chris > /home/$user1/.zshrc
+sudo -H -u pi bash -c 'cat ./zshrc_chris > /home/$user1/.zshrc'
 echo "cat ./zshrc_chris > /home/$user1/.zshrc"
 
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
